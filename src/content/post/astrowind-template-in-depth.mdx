@@ -1,0 +1,144 @@
+---
+publishDate: 2023-08-12T00:00:00Z
+author: Lorem ipsum
+title: Lorem ipsum dolor sit amet
+excerpt: Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+image: https://images.unsplash.com/photo-1534307671554-9a6d81f4d629?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1651&q=80
+category: Tutorials
+tags:
+- asd
+- fds
+metadata:
+  canonical: https://astrowind.vercel.app/get-started-website-with-astro-tailwind-css
+---
+
+Note that this is a client event. _BasicScripts.astro_ defines several other client-side functionality as well as this one.
+
+## Advanced Slot Usage
+
+_slots_ are part of the component implementation, which is a common concept among many frameworks, including _Astrojs_. The typical slot definition in a component looks like this:
+
+```astro
+---
+// (file: MyComponent.astro)
+const { title } = Astro.props;
+export interface Props {
+  title: string;
+}
+---
+
+<div>
+  <h2>{title}</h2>
+  <slot />
+  <!-- slot contents injected here -->
+  <div></div>
+</div>
+```
+
+And in usage elsewhere:
+
+```astro
+import MyComponent from "~/components/MyComponent"; ...
+<MyComponent someArg="A Slot example">
+  <p>This content will be displayed in the slot</p>
+</MyComponent>
+```
+
+### Alternate usage
+
+There's another way we can use slots, useful particularly when a component can have markdown content is as follows (study carefully...):
+
+```astro
+---
+// (file: MyComponent.astro)
+
+const { title } = Astro.props;
+export interface Props {
+  title: string;
+}
+const content: string = await Astro.props.render('default');
+---
+
+// renders the html to the 'content' variable
+<div>
+  <h2>{title}</h2>
+  <div set:html={content} />
+  <!-- slot contents injected here -->
+  <div></div>
+</div>
+```
+
+Whoa!! What's going on here?
+
+Notice there is no slot definition in the html portion of the component. Instead, what we do is have _Astro_ render the slot content (here, the 'default' content, but you can also render named slots) into a variable, and then use that content in a _div_ (for instance).
+
+So, if the usage is in a markdown file, like so:
+
+```mdx
+import MyComponent from '../../components/MyComponent';
+
+# Using the above component in a .mdx file (that can take components)
+
+{' '}
+
+<MyComponent title="This is a slot implementor">### Here is some markdown content - With a bullet item.</MyComponent>
+```
+
+_MyComponent_ renders the markdown to html and then injects it into the div.
+
+This actually has a big advantage -- consider that with the normal usage you don't have access to the slot contents: _Astro_ just plops the content into the _&lt;slot/&gt;_ tag. Using this method, however, allows you to access the content and further manipulate it before it gets inserted into the html.
+
+This allows a great deal of flexibility in component design.
+
+### Yet Another Step
+
+Now, we get to the techniques used in _AstroWind_, we'll use the _pages/index.astro_ file to illustrate.
+
+You'll note that the index file imports a lot of components, each one roughly analagous to a panel in the index page. Each of these components, in turn, is instantiated sequentially throughout the page. But, you'll notice that some of them use this kind of construct (we'll use the last section, _CallToAction_, as it is most illustrative of the technique):
+
+```astro
+<CallToAction
+  callToAction={{
+    text: 'Get template',
+    href: 'https://github.com/onwidget/astrowind',
+    icon: 'tabler:download',
+  }}
+>
+  <Fragment slot="title">
+    Astro + <br class="block sm:hidden" /><span class="sm:whitespace-nowrap">Tailwind CSS</span>
+  </Fragment>
+
+  <Fragment slot="subtitle">
+    Be very surprised by these huge fake numbers you are seeing on this page. <br class="hidden md:inline" />Don't waste
+    more time! :P
+  </Fragment>
+</CallToAction>
+```
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+## Nostra torquent consequat volutpat aliquet neque
+
+Lorem ipsum dolor sit amet consectetur adipiscing elit proin, aenean litora volutpat urna egestas magnis arcu non, cras ut cursus et sed morbi lectus. Integer faucibus sagittis eu nunc urna aliquet a laoreet torquent, suspendisse penatibus nulla sollicitudin congue rutrum dictum. Ornare mi habitasse fermentum phasellus dui et morbi litora sodales dictum id erat, nibh purus class ligula aenean lectus venenatis euismod cras torquent ac. Senectus sagittis conubia hendrerit at egestas porta venenatis nisi metus gravida tempor, aenean facilisis nisl ante facilisi lacus integer hac iaculis purus. Scelerisque libero torquent egestas curae tellus viverra inceptos imperdiet urna, porta suspendisse interdum primis odio morbi tempor commodo dictumst, suscipit ornare habitasse semper feugiat cras quisque lobortis.
+
+Iaculis arcu commodo dis proin vitae himenaeos, ante tristique potenti magna ligula, sagittis libero fermentum ullamcorper sociis. Sem eros non arcu natoque fringilla lacus vestibulum lacinia integer mus viverra in proin, sagittis fusce tortor erat enim rutrum vulputate curae laoreet class diam. Inceptos convallis ac nisi natoque nam quisque magnis ut nullam fringilla curae, luctus lacus purus habitant erat magna molestie class habitasse metus, nibh lobortis tortor curabitur neque phasellus feugiat netus morbi parturient. Neque malesuada mauris justo himenaeos pharetra, ullamcorper enim ligula a nulla consequat, eget vivamus velit ridiculus.
+
+## Praesent tellus ad sapien erat or
+
+- Quam orci nostra mi nulla, hac a.
+
+- Interdum iaculis quis tellus sociis orci nulla, quam rutrum conubia tortor primis.
+
+- Non felis sem placerat aenean duis, ornare turpis nostra.
+
+- Habitasse duis sociis sagittis cursus, ante dictumst commodo.
+
+Duis maecenas massa habitasse inceptos imperdiet scelerisque at condimentum ultrices, nam dui leo enim taciti varius cras habitant pretium rhoncus, ut hac euismod nostra metus sagittis mi aenean. Quam eleifend aliquet litora eget a tempor, ultricies integer vestibulum non felis sodales, eros diam massa libero iaculis.
+
+Nisl ligula ante magnis himenaeos pellentesque orci cras integer urna ut convallis, id phasellus libero est nunc ultrices eget blandit massa ac hac, morbi vulputate quisque tellus feugiat conubia luctus tincidunt curae fermentum. Venenatis dictumst tincidunt senectus vivamus duis dis sociis taciti porta primis, rhoncus ridiculus rutrum curae mattis ullamcorper ac sagittis nascetur curabitur erat, faucibus placerat vulputate eu at habitasse nulla nisl interdum. Varius turpis dignissim montes ac ante tristique quis parturient hendrerit faucibus, consequat auctor penatibus suspendisse rutrum erat nulla inceptos est justo, etiam mollis mauris facilisi cras sociosqu eu sapien sed.
+
+Blandit aptent conubia mollis mauris habitasse suspendisse torquent aenean, ac primis auctor congue cursus mi posuere molestie, velit elementum per feugiat libero dictumst phasellus. Convallis mollis taciti condimentum praesent id porttitor ac dictumst at, sed in eu eleifend vehicula fermentum lectus litora venenatis, gravida hac molestie cum sociosqu mus viverra torquent. Congue est fusce habitasse ridiculus integer suscipit platea volutpat, inceptos varius elementum pellentesque malesuada interdum magnis. Hac lacus eget enim purus massa commodo nec lectus natoque fames arcu, mattis class quam ut neque dui cras quis diam orci sed velit, erat morbi eros suscipit sagittis laoreet vivamus torquent nulla turpis.
+
+Ridiculus velit suscipit consequat auctor interdum magna gravida dictumst libero ut habitasse, sollicitudin vehicula suspendisse leo erat tristique at platea sagittis proin dignissim, id ornare scelerisque et urna maecenas congue tincidunt dictum malesuada. Dui vulputate accumsan scelerisque ridiculus dictum quisque et nam hac, tempus ultricies curabitur proin netus diam vivamus. Vestibulum ante ac auctor mi urna risus lacinia vulputate justo orci sociis dui semper, commodo morbi enim vivamus neque sem pellentesque velit donec hac metus odio. Tempor ultrices himenaeos massa sollicitudin mus conubia scelerisque cubilia, nascetur potenti mauris convallis et lectus gravida egestas sociis, erat eros ultricies aptent congue tortor ornare.
+
+Pretium aliquet sodales aliquam tincidunt litora lectus, erat dui nibh diam mus, sed hendrerit condimentum senectus arcu. Arcu a nibh auctor dapibus eros turpis tempus commodo, libero hendrerit dictum interdum mus class sed scelerisque, sapien dictumst enim magna molestie habitant donec. Fringilla dui sed curabitur commodo varius est vel, viverra primis habitant sapien montes mattis dignissim, gravida cubilia laoreet tempus aliquet senectus. Sociosqu purus praesent porttitor curae sollicitudin accumsan feugiat maecenas donec quis lacus, suscipit taciti convallis odio morbi eros nibh bibendum nunc orci. Magna cras nullam aliquam metus nibh sagittis facilisi tortor nec, mus varius curae ridiculus fames congue interdum erat urna, neque odio lobortis mi mattis diam cubilia arcu.

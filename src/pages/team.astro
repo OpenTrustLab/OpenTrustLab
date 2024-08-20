@@ -1,0 +1,120 @@
+---
+import Layout from '~/layouts/LandingLayout.astro';
+
+import Hero2 from '~/components/widgets/Hero2.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import Header from '~/components/widgets/Header.astro';
+import { headerData } from '~/navigation';
+import PersonInfo from '~/components/widgets/PersonInfo.astro';
+import Headline from '~/components/ui/Headline.astro';
+
+const metadata = {
+  title: 'People',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero2 Widget ******************* -->
+  <Fragment slot="header">
+    <Header {...headerData} isSticky showToggleTheme />
+  </Fragment>
+  <!-- <Headline
+    title={'Team'}
+    classes={{
+      title: 'text-5xl md:text-6xl',
+      container: 'pt-6 mb-0 md:mb-0',
+    }}
+  /> -->
+  <PersonInfo
+    classes={{ container: 'py-6 md:py-8 lg:py-10' }}
+    title="Research Team"
+    images={[
+      {
+        src: '/index.png',
+        alt: 'organizer01',
+        name: 'Zhenfei Yin',
+        company: 'University of Sydney',
+        bioLink: 'https://scholar.google.com.hk/citations?user=ngPR1dIAAAAJ&hl=zh-CN',
+        position: 'Consultant',
+      },
+      {
+        src: '/index.png',
+        alt: 'organizer01',
+        name: 'Zhenfei Yin',
+        company: 'University of Sydney',
+        bioLink: 'https://scholar.google.com.hk/citations?user=ngPR1dIAAAAJ&hl=zh-CN',
+        position: 'Consultant',
+      },
+      {
+        src: '/index.png',
+        alt: 'organizer01',
+        name: 'Zhenfei Yin',
+        company: 'University of Sydney',
+        bioLink: 'https://scholar.google.com.hk/citations?user=ngPR1dIAAAAJ&hl=zh-CN',
+        position: 'Consultant',
+      },
+      {
+        src: '/index.png',
+        alt: 'organizer01',
+        name: 'Zhenfei Yin',
+        company: 'University of Sydney',
+        bioLink: 'https://scholar.google.com.hk/citations?user=ngPR1dIAAAAJ&hl=zh-CN',
+        position: 'Consultant',
+      },
+      {
+        src: '/index.png',
+        alt: 'organizer01',
+        name: 'Zhenfei Yin',
+        company: 'University of Sydney',
+        bioLink: 'https://scholar.google.com.hk/citations?user=ngPR1dIAAAAJ&hl=zh-CN',
+        position: 'Consultant',
+      },
+    ]}
+  />
+  <PersonInfo
+    classes={{ container: 'py-6 md:py-8 lg:py-10' }}
+    title="Advisory Team"
+    images={[
+      {
+        src: '/index.png',
+        alt: 'organizer01',
+        name: 'Zhenfei Yin',
+        company: 'University of Sydney',
+        bioLink: 'https://scholar.google.com.hk/citations?user=ngPR1dIAAAAJ&hl=zh-CN',
+        position: 'Consultant',
+      },
+      {
+        src: '/index.png',
+        alt: 'organizer01',
+        name: 'Zhenfei Yin',
+        company: 'University of Sydney',
+        bioLink: 'https://scholar.google.com.hk/citations?user=ngPR1dIAAAAJ&hl=zh-CN',
+        position: 'Consultant',
+      },
+      {
+        src: '/index.png',
+        alt: 'organizer01',
+        name: 'Zhenfei Yin',
+        company: 'University of Sydney',
+        bioLink: 'https://scholar.google.com.hk/citations?user=ngPR1dIAAAAJ&hl=zh-CN',
+        position: 'Consultant',
+      },
+      {
+        src: '/index.png',
+        alt: 'organizer01',
+        name: 'Zhenfei Yin',
+        company: 'University of Sydney',
+        bioLink: 'https://scholar.google.com.hk/citations?user=ngPR1dIAAAAJ&hl=zh-CN',
+        position: 'Consultant',
+      },
+      {
+        src: '/index.png',
+        alt: 'organizer01',
+        name: 'Zhenfei Yin',
+        company: 'University of Sydney',
+        bioLink: 'https://scholar.google.com.hk/citations?user=ngPR1dIAAAAJ&hl=zh-CN',
+        position: 'Consultant',
+      },
+    ]}
+  />
+</Layout>

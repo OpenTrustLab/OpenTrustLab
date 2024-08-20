@@ -1,0 +1,93 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+import Header from '~/components/widgets/Header.astro';
+import Hero2 from '~/components/widgets/Hero2.astro';
+import Features from '~/components/widgets/Features.astro';
+import Steps2 from '~/components/widgets/Steps2.astro';
+import Content from '~/components/widgets/Content.astro';
+import Pricing from '~/components/widgets/Pricing.astro';
+
+import { headerData } from '~/navigation';
+import FAQs from '~/components/widgets/FAQs.astro';
+import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
+import Note from '~/components/widgets/Note.astro';
+import Stats from '~/components/widgets/Stats.astro';
+import Testimonials from '~/components/widgets/Testimonials.astro';
+
+const metadata = {
+  title: 'Home',
+};
+---
+
+<Layout metadata={metadata}>
+  <Fragment slot="header">
+    <Header {...headerData} isSticky showToggleTheme />
+  </Fragment>
+
+  <!-- Hero2 Widget ******************* -->
+
+  <!-- Features Widget *************** -->
+  <!-- Stats Widget ****************** -->
+
+  <!-- Content Widget **************** -->
+  <!-- Content Widget **************** -->
+
+  <!-- FAQs Widget ******************* -->
+
+  <!-- Steps2 Widget ****************** -->
+  <div class="relative mx-auto" style="width: 75%;">
+    <img src="/images/bg.jpg" class="w-full h-100 object-cover" />
+    <div class="absolute inset-0 flex items-center justify-center">
+      <span class="text-white text-6xl font-bold">OpenTrustLab</span>
+    </div>
+  </div>
+  <div class="py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col lg:flex-row">
+        <!-- Left Section for 'Our Mission' -->
+        <div class="lg:w-1/2 p-4">
+          <h2 class="text-4xl font-bold text-gray-900">About us</h2>
+          <p class="mt-4 text-lg text-gray-600">
+            The <span class="font-bold">AI Safety Center (AISC)</span> at the Shanghai Artificial Intelligence Laboratory
+            is a research and nonprofit organization that focuses on safety in the lifecycle of artificial intelligence (AI),
+            bridging collaborations between universities, industries, and governments.
+          </p>
+        </div>
+
+        <!-- Right Section for Questions -->
+        <div class="lg:w-1/2 p-4">
+          <div class="mb-8">
+            <h2 class="text-2xl font-bold text-gray-900">AISC aims to:</h2>
+            <p class="mt-4 text-lg text-gray-600">
+              --<span class="font-bold">AI's lifecycle safety.</span> We conduct research and apply safety techniques in the lifecycle of AI,
+              including determining use cases, data preparation, training and finetuning, deployment, and product
+              delivery.
+            </p>
+            <p class="mt-4 text-lg text-gray-600">
+              --<span class="font-bold">Value Alignment.</span> We align AI's value with human value instead of behavior-level alignment.
+            </p>
+            <p class="mt-4 text-lg text-gray-600">
+              --<span class="font-bold">Societal AI agents.</span> We monitor interactions between AI agents and human society and explain how AI agents impact society.
+            </p>
+            <p class="mt-4 text-lg text-gray-600">
+              --<span class="font-bold">AI policy and applications. </span> We link governments universities, industries, and governments to building AI policy and accelerating the beneficial AI applications in specialized domains.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BlogLatestPost Widget **************** -->
+
+  <!-- <BlogLatestPosts
+    id="blog"
+    title="Stay informed with us"
+    information={`Explore our collection of articles, guides, and tutorials on AI`}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </BlogLatestPosts> -->
+</Layout>
